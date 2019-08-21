@@ -1,0 +1,56 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>DroneAid model</title>
+    <style>
+      body:not(.webcam) #imagecontainer,
+      body.webcam #webcamcontainer {
+        display: inline-block;
+      }
+      body.webcam #imagecontainer,
+      body:not(.webcam) #webcamcontainer {
+        display: none;
+      }
+      pre {
+        margin: 0 0 5px 10px;
+        overflow: auto;
+        max-height: 200px;
+        background-color: #efefef;
+        padding: 5px;
+      }
+    </style>
+  </head>
+  <body class="busy">
+    <div style="margin: 20px;">
+      <h1>DroneAid</h1>
+
+      <div style="padding: 10px;">
+        <input id="webcamcheckbox" type="checkbox" onchange="webcamToggled();">webcam
+      </div>
+
+      <div style="padding: 10px;">
+        <div id="imagecontainer" style="position:relative;min-width:600px;vertical-align:top;">
+          <input id="imageupload" type="file" name="filename" accept="image/gif, image/jpeg, image/png" onchange="loadImage(this);" >
+          <button id="modelrunimage" onclick="updateImagePrediction();" >get prediction</button>
+          <div style="position:relative;margin-top:10px;">
+            <canvas id="uploadedImage"></canvas>
+          </div>
+        </div>
+        <div id="webcamcontainer" style="position:relative;min-width:600px;vertical-align:top;">
+          <button id="startwebcam" onclick="startWebcam();" >start video</button>
+          <button id="stopwebcam" onclick="stopWebcam();" >stop video</button>
+          <div style="position:relative;margin-top:10px;">
+            <canvas id="webcamVideo"></canvas>
+          </div>
+        </div>
+        <div id="message" style="position:relative;display:inline-block;">
+          <span>initializing...</span>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="js/droneaid.js"></script>
+  </body>
+  </body>
+</html>
